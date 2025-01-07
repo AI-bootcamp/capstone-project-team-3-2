@@ -62,6 +62,30 @@ def image_grid_generator(numbers_matrix, colors_dict, grayscale_colors_dict, cel
 
     return img
 
+
+# Apply RTL styling for the entire page and selectbox
+st.markdown("""
+    <style>
+        body {
+            direction: rtl;
+            text-align: right;
+        }
+        .stSelectbox label {
+            direction: rtl;
+            text-align: right;
+        }
+        .stSelectbox div {
+            direction: rtl;
+        }
+        .stSelectbox select {
+            text-align: right;
+        }
+        .stMarkdown {
+            direction: rtl;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 # Arabic number map (0 to 5)
 arabic_number_map = {
     "صفر": 0,
@@ -74,12 +98,33 @@ arabic_number_map = {
 
 # Streamlit UI
 def main():
-    st.title("Interactive Grid Coloring with Speech Recognition")
-    st.markdown("Speak a region number (in Arabic) and a color to update the grid.")
+    # Create two columns: one for the logo and one for the caption
+    #col1, col2 = st.columns([1, 5])  # Adjust the ratios as needed
+
+    st.image('Logo.png', width=670)  # Add the logo image (left column)
+
+    st.markdown("""
+        <div dir="rtl">
+        <h3 style="color: #2C3E6E;">🎨 بصوتك، لوّن عالمك</h3>  <!-- Dark blue color with an emoji -->
+        
+        ##### عن ملاذ
+        "ملاذ" هو منصة تفاعلية حيث يمكنك إحياء أفكارك الإبداعية عن طريق تلوين مناطق مختلفة في شبكة باستخدام أوامر صوتية.
+        مع نهجنا المبتكر، يمكنك التحدث بالعربية لاختيار المنطقة واللون، ومتابعة تحديث رسمتك فورًا!
+
+        ##### كيفية استخدام الموقع:
+        1. اختر صورة لتوينها من القائمة المنسدلة.
+        2. اضغط على زر "تسجيل" لبدء الأمر الصوتي.
+        3. تحدث بوضوح عن رقم المنطقة واللون الذي تريد استخدامه (بالعربية).
+        4. شاهد تحديث رسمتك بالألوان الجديدة في الوقت الفعلي!
+
+        🎨 استمتع بتجربة الإبداع
+        </div>
+        """, unsafe_allow_html=True)
+    
     nlp_model = pipeline("zero-shot-classification")
 
     selected_image = st.selectbox(
-        'Select an image:',
+        'اختر صورة:',
         pixel_images.keys()
     )
 
@@ -99,31 +144,58 @@ def main():
         use_column_width=True,
     )
 
-    st.header("🎤 Record Voice Commands")
-    st.write("Available colors: ", ", ".join(st.session_state.color_map.keys()))
+    st.header("🎤 تسجيل الأوامر الصوتية")
+
+    ## هنا اضافه باليت الالوان 
+
+
+    # Define image map, where color names correspond to images
+    image_map = {
+       "احمر": r"C:\Users\96653\Downloads\Untitled design.png",   # Replace with actual image URL or path
+       "أسود": "https://path_to_black_image.png", # Replace with actual image URL or path
+       "أبيض": "https://path_to_white_image.png", # Replace with actual image URL or path
+    }
+    # Show colors as circles with the actual color inside# Show colors as circles with the actual color inside
+    st.write("الألوان المتاحة: ")
+    # Loop through each color in the color map
+    for color_name, color_code in st.session_state.color_map.items():
+    # Display color circle (using color name and code)
+      st.markdown(f"""
+        <div style="display: inline-block; margin: 5px;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background-color: {color_code};"></div>
+        </div>
+      """, unsafe_allow_html=True)
+
+    # Display the image for each color by default
+    st.image(image_map[color_name], caption=f"الصورة المرتبطة بـ {color_name}")
+
+
+
+
+
     command = ""
     listened = False
-    if st.button("Press to Record"):
+    if st.button("اضغط للتسجيل"):
         recognizer = sr.Recognizer()
         with sr.Microphone() as source:
-            st.write("🎤 Listening...")
+            st.write("🎤 الاستماع...")
             listened = True
             try:
                 audio = recognizer.listen(source, timeout=10)
                 command = recognizer.recognize_google(audio, language="ar")
-                st.success(f"✅ Recorded Command: {command}")
+                st.success(f"✅ تم تسجيل الأمر: {command}")
             except Exception as e:
-                st.error(f"❌ Could not recognize the audio: {str(e)}")
+                st.error(f"❌ لم يتم التعرف على الصوت: {str(e)}")
 
     if command:
-        st.write(f"🔍 Processing Command: {command}")
+        st.write(f"🔍 معالجة الأمر: {command}")
         # Detect color from command
         color_candidates = list(st.session_state.color_map.keys())
         nlp_result = nlp_model(command, candidate_labels=color_candidates)
         detected_color = nlp_result["labels"][0]  # Most likely color
 
         if detected_color in st.session_state.color_map:
-            st.write(f"🎨 Detected Color: {detected_color}")
+            st.write(f"🎨 اللون المكتشف: {detected_color}")
 
             # Detect zone (Arabic number) from command
             detected_zone = None
@@ -133,7 +205,7 @@ def main():
                     break
 
             if detected_zone is not None:
-                st.write(f"📍 Detected Zone: {detected_zone}")
+                st.write(f"📍 المنطقة المكتشفة: {detected_zone}")
 
                 # Update grid
                 updated_matrix = [row[:] for row in st.session_state.pixel_matrix]
@@ -148,15 +220,15 @@ def main():
 
                 st.image(
                     image_grid_generator(st.session_state.pixel_matrix_colored, st.session_state.color_map, st.session_state.grayscale_colors_dict),
-                    caption="📷 Updated Grid",
+                    caption="📷 تم تحديث الشبكة",
                     use_column_width=True,
                 )
             else:
-                st.error("❌ Could not detect a valid zone number.")
+                st.error("❌ لم يتم التعرف على رقم المنطقة بشكل صحيح.")
         else:
-            st.error("❌ Detected color is not in the recognized list.")
+            st.error("❌ اللون المكتشف غير موجود في القائمة.")
     elif listened:
-        st.error("❌ No voice command recorded.")
+        st.error("❌ لم يتم تسجيل أمر صوتي.")
 
 # Run the app
 if __name__ == "__main__":
