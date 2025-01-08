@@ -27,7 +27,7 @@ pixel_images = {
             "بني": (139, 69, 19)
         },
         "color_platte": {
-            "link": "images/fox-ColorPlatte.png"
+            "link": "images/foxcolorPlatte.png"
         }
     },
     "ماريو": {
@@ -57,7 +57,7 @@ pixel_images = {
             "ازرق": (0, 0, 255)       # BLUE (Overalls)
         },
         "color_platte": {
-            "link": "images/MARIO-colorPlatte.png"
+            "link": "images/marioColorplatte.png"
         }
     },
     "سبايدرمان":{
@@ -100,7 +100,7 @@ pixel_images = {
             "ازرق": (0, 0, 255), # BLUE
         },
         "color_platte": {
-            "link": "images/spiderMan-ColorPlatte.png"
+            "link": "images/spiderMaan.png"
         }
     },
     "فراشة": {
@@ -122,7 +122,7 @@ pixel_images = {
             "بني": (165, 42, 42), # Brown
         },
         "color_platte": {
-            "link": "images/butterfly-ColorPlatte.png"
+            "link": "images/butterflyCP.png"
         }
     },
     "سونيك": {
@@ -165,7 +165,7 @@ pixel_images = {
             "احمر": (255, 0, 0), # Red
         },
         "color_platte": {
-            "link": "images/Sonic-ColorPlatte.png"
+            "link": "images/SonicColorP.png"
         }
     },
     "دب":  {
@@ -198,7 +198,7 @@ pixel_images = {
             "وردي فاتح": (255, 182, 193) # Baby Pink
         },
         "color_platte": {
-            "link": "images/Bear-ColorPlatte.png"
+            "link": "images/BearCP.png"
         }
     },
     "دلفين": {
@@ -230,7 +230,7 @@ pixel_images = {
             "ارزق فاتح": (173, 216, 230), # Light BLUE
         },
         "color_platte": {
-            "link": "images/Dolphine-ColorPlatte.png"
+            "link": "images/DelphoneCP.png"
         }
     },
     "بطيخ": {
@@ -259,7 +259,7 @@ pixel_images = {
             "اسود": (0, 0, 0) # BLACK (SEEDS)
         },
         "color_platte": {
-            "link": "images/watermelon-ColorPlatte.png"
+            "link": "images/waterMelonCP.png"
         }
     }
 }
