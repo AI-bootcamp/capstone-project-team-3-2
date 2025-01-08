@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 from PIL import Image, ImageDraw
 import speech_recognition as sr
-from transformers import pipeline
 from images import pixel_images
 
 
@@ -123,7 +122,6 @@ def main():
         """, unsafe_allow_html=True)
 
 
-    nlp_model = pipeline("zero-shot-classification")
 
 
     selected_image = st.selectbox("اختر صورة:", pixel_images.keys())
