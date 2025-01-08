@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 from PIL import Image, ImageDraw
 import speech_recognition as sr
-from transformers import pipeline
 from images import pixel_images
 
 
@@ -99,6 +98,13 @@ arabic_number_map = {
     "ثلاثه": 3,
     "اربعه": 4,
     "خمسه": 5,
+
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
 }
 
 # Streamlit UI
@@ -127,10 +133,9 @@ def main():
         unsafe_allow_html=True,
     )
 
-    nlp_model = pipeline("zero-shot-classification")
 
     selected_image = st.selectbox("اختر صورة:", pixel_images.keys())
-
+##
     # Generate initial grid
     if (
         "selected_image" not in st.session_state
@@ -153,12 +158,14 @@ def main():
 
     # Display the grid image on the left column
     with col1:
-        st.image(
+        img = st.empty()
+        img.image(
             image_grid_generator(
                 st.session_state.pixel_matrix,
                 st.session_state.color_map,
                 st.session_state.grayscale_colors_dict,
             ),
+            
             caption="Initial Grid",
             use_container_width=True,
         )
@@ -219,7 +226,7 @@ def main():
 
                 st.session_state.pixel_matrix_colored = updated_matrix
 
-                st.image(
+                img.image(
                     image_grid_generator(
                         st.session_state.pixel_matrix_colored,
                         st.session_state.color_map,
