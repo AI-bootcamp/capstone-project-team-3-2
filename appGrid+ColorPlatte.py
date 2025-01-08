@@ -103,17 +103,14 @@ arabic_number_map = {
 
 # Streamlit UI
 def main():
-    # Create two columns: one for the logo and one for the caption
-    st.image("Logo.png", width=670)  # Add the logo image (left column)
-
-    st.markdown(
-        """
+    st.image("images\Malath logo.png", width=670)  # Add the logo image (left column)
+    st.markdown("""
         <div dir="rtl">
-        <h3 style="color: #2C3E6E;">🎨 بصوتك، لوّن عالمك</h3>  <!-- Dark blue color with an emoji -->
-        
+        <h3 style="color: #2C3E6E;"> بصوتك، لوّن عالمك 🎨</h3>  <!-- Dark blue color with an emoji -->
+            
         ##### عن ملاذ
         "ملاذ" هو منصة تفاعلية حيث يمكنك إحياء أفكارك الإبداعية عن طريق تلوين مناطق مختلفة في شبكة باستخدام أوامر صوتية.
-        مع نهجنا المبتكر، يمكنك التحدث بالعربية لاختيار المنطقة واللون، ومتابعة تحديث رسمتك فورًا!
+         مع نهجنا، يمكنك التحدث  لاختيار المنطقة واللون، ومتابعة تحديث رسمتك فورًا!
 
         ##### كيفية استخدام الموقع:
         1. اختر صورة لتوينها من القائمة المنسدلة.
@@ -121,11 +118,56 @@ def main():
         3. تحدث بوضوح عن رقم المنطقة واللون الذي تريد استخدامه (بالعربية).
         4. شاهد تحديث رسمتك بالألوان الجديدة في الوقت الفعلي!
 
-        🎨 استمتع بتجربة الإبداع
+        
+         </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <style>
+        .info-box {
+            text-align: right;
+            direction: rtl;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.8;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        """
+        <div class="info-box">
+           <h3>  كل لون تختاره يعكس خيالك المميز
+            🌟
+            </h3>
+            
+
+            🎨 استمتع بتجربة الإبداع
         </div>
         """,
-        unsafe_allow_html=True,
+        unsafe_allow_html=True
     )
+
+    st.write(" ")
+    st.write(" ")
+    st.write(" ")
+    st.write(" ")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.image("images\hello_cloud1.png", use_container_width=True, width=500)  # العمود الأول
+    
+    with col2:  # العمود الثاني
+        st.image("images\lion_.png", use_container_width=True, width=500)
+
+    st.write(" ")
+    st.write(" ")
+    st.write(" ")
+    st.write(" ")
+
 
     nlp_model = pipeline("zero-shot-classification")
 
@@ -153,12 +195,14 @@ def main():
 
     # Display the grid image on the left column
     with col1:
-        st.image(
+        img = st.empty()
+        img.image(
             image_grid_generator(
                 st.session_state.pixel_matrix,
                 st.session_state.color_map,
                 st.session_state.grayscale_colors_dict,
             ),
+            
             caption="Initial Grid",
             use_container_width=True,
         )
@@ -188,23 +232,21 @@ def main():
             except Exception as e:
                 st.error(f"❌ لم يتم التعرف على الصوت: {str(e)}")
 
-    if command:
-        st.write(f"🔍 معالجة الأمر: {command}")
-        # Detect color from command
-        color_candidates = list(st.session_state.color_map.keys())
-        nlp_result = nlp_model(command, candidate_labels=color_candidates)
-        detected_color = nlp_result["labels"][0]  # Most likely color
+        detected_color = None
+        for color in list(st.session_state.color_map.keys()):
+            if color in command:
+                detected_color = color
+                break
 
-        if detected_color in st.session_state.color_map:
+        if detected_color:
             st.write(f"🎨 اللون المكتشف: {detected_color}")
 
-            # Detect zone (Arabic number) from command
+            # Detect zone (Arabic number) using if statements
             detected_zone = None
             for word in command.split():
                 if word in arabic_number_map:
                     detected_zone = arabic_number_map[word]
                     break
-
             if detected_zone is not None:
                 st.write(f"📍 المنطقة المكتشفة: {detected_zone}")
 
@@ -215,13 +257,11 @@ def main():
                         if updated_matrix[y][x] == detected_zone:
                             updated_matrix[y][x] = detected_color
                         else:
-                            updated_matrix[y][x] = st.session_state.pixel_matrix_colored[
-                                y
-                            ][x]
+                            updated_matrix[y][x] = st.session_state.pixel_matrix_colored[y][x]
 
                 st.session_state.pixel_matrix_colored = updated_matrix
 
-                st.image(
+                img.image(
                     image_grid_generator(
                         st.session_state.pixel_matrix_colored,
                         st.session_state.color_map,

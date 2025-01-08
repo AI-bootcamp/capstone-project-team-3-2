@@ -25,6 +25,9 @@ pixel_images = {
             "برتقالي": (255, 140, 0),
             "ابيض": (255, 255, 255),
             "بني": (139, 69, 19)
+        },
+        "color_platte": {
+            "link": "images/fox-ColorPlatte.png"
         }
     },
     "ماريو": {
@@ -52,6 +55,9 @@ pixel_images = {
             "احمر": (255, 0, 0),      # Red (Hat, shirt)
             "اصفر": (255, 255, 0),    # Yellow (Face, hands)
             "ازرق": (0, 0, 255)       # BLUE (Overalls)
+        },
+        "color_platte": {
+            "link": "images/MARIO-colorPlatte.png"
         }
     },
     "سبايدرمان":{
@@ -92,6 +98,9 @@ pixel_images = {
             "اسود": (0, 0, 0), # Black
             "احمر": (255, 0, 0), # Red
             "ازرق": (0, 0, 255), # BLUE
+        },
+        "color_platte": {
+            "link": "images/spiderMan-ColorPlatte.png"
         }
     },
     "فراشة": {
@@ -111,6 +120,9 @@ pixel_images = {
             "ازرق": (0, 0, 255), # BLUE
             "اصفر": (255, 255, 0), # Yellow
             "بني": (165, 42, 42), # Brown
+        },
+        "color_platte": {
+            "link": "images/butterfly-ColorPlatte.png"
         }
     },
     "سونيك": {
@@ -151,6 +163,9 @@ pixel_images = {
             "ازرق": (0, 0, 255), # BLUE
             "لحمي": (255, 224, 189), # Skin color (light)
             "احمر": (255, 0, 0), # Red
+        },
+        "color_platte": {
+            "link": "images/Sonic-ColorPlatte.png"
         }
     },
     "دب":  {
@@ -182,8 +197,8 @@ pixel_images = {
             "اسود": (0, 0, 0),    # Black
             "وردي فاتح": (255, 182, 193) # Baby Pink
         },
-        "colorP": {
-            "link": "    "
+        "color_platte": {
+            "link": "images/Bear-ColorPlatte.png"
         }
     },
     "دلفين": {
@@ -213,6 +228,9 @@ pixel_images = {
             "ابيض": (255, 255, 255), # White
             "ازرق": (0, 0, 139), # Dark BLUE
             "ارزق فاتح": (173, 216, 230), # Light BLUE
+        },
+        "color_platte": {
+            "link": "images/Dolphine-ColorPlatte.png"
         }
     },
     "بطيخ": {
@@ -239,6 +257,9 @@ pixel_images = {
             "وردي": (255, 182, 193), # PINK (FLESH)
             "احمر": (220, 20, 60), # RED (INNER FLESH)
             "اسود": (0, 0, 0) # BLACK (SEEDS)
+        },
+        "color_platte": {
+            "link": "images/watermelon-ColorPlatte.png"
         }
     }
 }
