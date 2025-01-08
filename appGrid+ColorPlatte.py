@@ -188,23 +188,21 @@ def main():
             except Exception as e:
                 st.error(f"❌ لم يتم التعرف على الصوت: {str(e)}")
 
-    if command:
-        st.write(f"🔍 معالجة الأمر: {command}")
-        # Detect color from command
-        color_candidates = list(st.session_state.color_map.keys())
-        nlp_result = nlp_model(command, candidate_labels=color_candidates)
-        detected_color = nlp_result["labels"][0]  # Most likely color
+        detected_color = None
+        for color in list(st.session_state.color_map.keys()):
+            if color in command:
+                detected_color = color
+                break
 
-        if detected_color in st.session_state.color_map:
+        if detected_color:
             st.write(f"🎨 اللون المكتشف: {detected_color}")
 
-            # Detect zone (Arabic number) from command
+            # Detect zone (Arabic number) using if statements
             detected_zone = None
             for word in command.split():
                 if word in arabic_number_map:
                     detected_zone = arabic_number_map[word]
                     break
-
             if detected_zone is not None:
                 st.write(f"📍 المنطقة المكتشفة: {detected_zone}")
 
