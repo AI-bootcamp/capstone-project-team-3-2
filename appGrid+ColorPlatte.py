@@ -122,57 +122,12 @@ def main():
          </div>
         """, unsafe_allow_html=True)
 
-    st.markdown(
-        """
-        <style>
-        .info-box {
-            text-align: right;
-            direction: rtl;
-            font-family: 'Arial', sans-serif;
-            line-height: 1.8;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        """
-        <div class="info-box">
-           <h3>  كل لون تختاره يعكس خيالك المميز
-            🌟
-            </h3>
-            
-
-            🎨 استمتع بتجربة الإبداع
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.write(" ")
-    st.write(" ")
-    st.write(" ")
-    st.write(" ")
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.image("images\hello_cloud1.png", use_container_width=True, width=500)  # العمود الأول
-    
-    with col2:  # العمود الثاني
-        st.image("images\lion_.png", use_container_width=True, width=500)
-
-    st.write(" ")
-    st.write(" ")
-    st.write(" ")
-    st.write(" ")
-
 
     nlp_model = pipeline("zero-shot-classification")
 
-    selected_image = st.selectbox("اختر صورة:", pixel_images.keys())
 
+    selected_image = st.selectbox("اختر صورة:", pixel_images.keys())
+##
     # Generate initial grid
     if (
         "selected_image" not in st.session_state
@@ -195,15 +150,15 @@ def main():
 
     # Display the grid image on the left column
     with col1:
+        # st.write(st.session_state.pixel_matrix_colored)
         img = st.empty()
         img.image(
             image_grid_generator(
-                st.session_state.pixel_matrix,
+                st.session_state.pixel_matrix_colored,
                 st.session_state.color_map,
                 st.session_state.grayscale_colors_dict,
             ),
-            
-            caption="Initial Grid",
+            caption="📷 تم تحديث الشبكة",
             use_container_width=True,
         )
 
@@ -231,7 +186,7 @@ def main():
                 st.success(f"✅ تم تسجيل الأمر: {command}")
             except Exception as e:
                 st.error(f"❌ لم يتم التعرف على الصوت: {str(e)}")
-
+        Detect=st.empty()
         detected_color = None
         for color in list(st.session_state.color_map.keys()):
             if color in command:
@@ -257,10 +212,11 @@ def main():
                         if updated_matrix[y][x] == detected_zone:
                             updated_matrix[y][x] = detected_color
                         else:
-                            updated_matrix[y][x] = st.session_state.pixel_matrix_colored[y][x]
+                            updated_matrix[y][x] = st.session_state.pixel_matrix_colored[
+                                y
+                            ][x]
 
                 st.session_state.pixel_matrix_colored = updated_matrix
-
                 img.image(
                     image_grid_generator(
                         st.session_state.pixel_matrix_colored,
@@ -278,6 +234,5 @@ def main():
         st.error("❌ لم يتم تسجيل أمر صوتي.")
 
 
-# Run the app
 if __name__ == "__main__":
     main()
