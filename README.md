@@ -63,11 +63,13 @@
 
 #### 💻 **Installation**
 
-1. Clone the repository:
-   ```bash
-   git clone <repository_url>
-   cd <repository_folder>
-   ```
+   1. Clone the repository:
+      ```bash
+      git clone https://github.com/AI-bootcamp/capstone-project-team-3-2.git
+      cd capstone-project-team-3-2
+      ```
+
+Your repository is now cloned locally, and you're inside the project folder. Let me know if you need further assistance with setting up the repository or working on the project!
 
 2. Install dependencies:
    ```bash
