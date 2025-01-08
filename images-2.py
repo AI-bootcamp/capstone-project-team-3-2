@@ -27,7 +27,7 @@ pixel_images = {
             "بني": (139, 69, 19)
         },
         "color_platte": {
-            "link": "/workspaces/Basser-/images/fox-ColorPlatte.png"
+            "link": "/capstone-project-team-3-2/images/fox-ColorPlatte.png"
         }
     },
     "ماريو": {
@@ -57,7 +57,7 @@ pixel_images = {
             "ازرق": (0, 0, 255)       # BLUE (Overalls)
         },
         "color_platte": {
-            "link": "/workspaces/Basser-/images/MARIO-colorPlatte.png"
+            "link": "/capstone-project-team-3-2/images/MARIO-colorPlatte.png"
         }
     },
     "سبايدرمان":{
@@ -100,7 +100,7 @@ pixel_images = {
             "ازرق": (0, 0, 255), # BLUE
         },
         "color_platte": {
-            "link": "/workspaces/Basser-/images/spiderMan-ColorPlatte.png"
+            "link": "/capstone-project-team-3-2/images/spiderMan-ColorPlatte.png"
         }
     },
     "فراشة": {
@@ -122,7 +122,7 @@ pixel_images = {
             "بني": (165, 42, 42), # Brown
         },
         "color_platte": {
-            "link": "/workspaces/Basser-/images/butterfly-ColorPlatte.png"
+            "link": "/capstone-project-team-3-2/images/butterfly-ColorPlatte.png"
         }
     },
     "سونيك": {
@@ -165,7 +165,7 @@ pixel_images = {
             "احمر": (255, 0, 0), # Red
         },
         "color_platte": {
-            "link": "/workspaces/Basser-/images/Sonic-ColorPlatte.png"
+            "link": "/capstone-project-team-3-2/images/Sonic-ColorPlatte.png"
         }
     },
     "دب":  {
@@ -198,7 +198,7 @@ pixel_images = {
             "وردي فاتح": (255, 182, 193) # Baby Pink
         },
         "color_platte": {
-            "link": "/workspaces/Basser-/images/Bear-ColorPlatte.png"
+            "link": "/capstone-project-team-3-2/images/Bear-ColorPlatte.png"
         }
     },
     "دلفين": {
@@ -230,7 +230,7 @@ pixel_images = {
             "ارزق فاتح": (173, 216, 230), # Light BLUE
         },
         "color_platte": {
-            "link": "/workspaces/Basser-/images/Dolphine-ColorPlatte.png"
+            "link": "capstone-project-team-3-2/images/Dolphine-ColorPlatte.png"
         }
     },
     "بطيخ": {
@@ -259,7 +259,7 @@ pixel_images = {
             "اسود": (0, 0, 0) # BLACK (SEEDS)
         },
         "color_platte": {
-            "link": "/workspaces/Basser-/images/watermelon-ColorPlatte.png"
+            "link": "/Users/adwaalsh/capstone-project-team-3-2/images/watermelon-ColorPlatte.png"
         }
     }
 }
