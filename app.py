@@ -141,7 +141,7 @@ def main():
     st.image(
         image_grid_generator(st.session_state.pixel_matrix, st.session_state.color_map, st.session_state.grayscale_colors_dict),
         caption="Initial Grid",
-        use_column_width=True,
+        use_container_width=True,
     )
 
     st.header("🎤 تسجيل الأوامر الصوتية")
@@ -167,7 +167,7 @@ def main():
       """, unsafe_allow_html=True)
 
     # Display the image for each color by default
-    st.image(image_map[color_name], caption=f"الصورة المرتبطة بـ {color_name}")
+    #st.image(image_map[color_name], caption=f"الصورة المرتبطة بـ {color_name}")
 
 
 
@@ -190,19 +190,20 @@ def main():
     if command:
         st.write(f"🔍 معالجة الأمر: {command}")
         # Detect color from command
-        color_candidates = list(st.session_state.color_map.keys())
-        nlp_result = nlp_model(command, candidate_labels=color_candidates)
-        detected_color = nlp_result["labels"][0]  # Most likely color
+        detected_color = None
+        for color in list(st.session_state.color_map.keys()):
+            if color in command:
+                detected_color = color
+                break
 
-        if detected_color in st.session_state.color_map:
+        if detected_color:
             st.write(f"🎨 اللون المكتشف: {detected_color}")
-
-            # Detect zone (Arabic number) from command
             detected_zone = None
             for word in command.split():
                 if word in arabic_number_map:
                     detected_zone = arabic_number_map[word]
                     break
+
 
             if detected_zone is not None:
                 st.write(f"📍 المنطقة المكتشفة: {detected_zone}")
@@ -221,7 +222,7 @@ def main():
                 st.image(
                     image_grid_generator(st.session_state.pixel_matrix_colored, st.session_state.color_map, st.session_state.grayscale_colors_dict),
                     caption="📷 تم تحديث الشبكة",
-                    use_column_width=True,
+                    use_container_width =True,
                 )
             else:
                 st.error("❌ لم يتم التعرف على رقم المنطقة بشكل صحيح.")
