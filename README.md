@@ -30,7 +30,6 @@
 ├── images+ColorPlatte.py          # Extended functionality for grids and palettes
 ├── Logo.png                       # Project logo
 ├── README.md                      # Project documentation
-├── READMEProject.md               # Additional documentation
 └── requirements.txt               # Python package dependencies
 ```
 
