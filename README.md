@@ -1,19 +1,113 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/C-PmOpVZ)
-# Capstone Project Evaluation Rubric
+# 🎨 Malath - Voice-Controlled Coloring Platform
 
-This rubric outlines the grading criteria for the final capstone project. Each aspect of the project is evaluated on a scale from 0 to 5, where higher scores indicate better performance. The project will be assessed on the quality of its documentation, organization, presentation, functionality, and deployment.
+### 🧩 **Overview**
+**Malath** is an interactive platform that enables users to color various grid areas using **voice commands** in Arabic. By leveraging advanced voice recognition, real-time updates, and interactive UI elements, Malath transforms creative ideas into dynamic pixel art.
 
-This rubric represents **70% of the total evaluation**, while the remaining **30% will be determined by the Evaluation Committee**.
+### ✨ **Features**
+- 🎤 **Voice Recognition**: Convert Arabic speech commands into actionable color instructions using `SpeechRecognition`.
+- 🌈 **Real-Time Grid Coloring**: Watch the grid dynamically update as you issue commands.
+- 🖼️ **Grid Image Selection**: Choose from a variety of predefined pixel art grids.
+- 🖌️ **Color Palette Integration**: Customize your artwork with diverse color palettes.
+- 🔤 **RTL and Arabic Language Support**: Fully compatible with right-to-left text and Arabic input.
 
-To successfully pass this bootcamp, each participant must achieve at least **70% of the total score**.
+---
 
-| **Criteria**            | **0**                      | **1**                                | **2**                                   | **3**                                     | **4**                                      | **5**                                      |
-|--------------------------|----------------------------|--------------------------------------|----------------------------------------|------------------------------------------|------------------------------------------|------------------------------------------|
-| **Readme File**          | Not implemented           | Minimal details, lacks clarity       | Basic details, poorly formatted        | Adequate details, minor clarity issues   | Well-detailed, minor formatting issues   | Comprehensive, well-organized, error-free |
-| **Daily Reports**        | Not submitted             | Rarely submitted, vague updates, poorly organized | Inconsistent, basic updates, poorly presented | Regular submissions, some useful insights, minor organization flaws | Regular and insightful updates, organized and presentable | Consistently detailed, reflective, well-organized, and highly presentable |
-| **Final Presentation**   | Not presented             | Minimal content, poorly delivered    | Basic content, lacks engagement        | Covers key aspects, minor delivery flaws | Clear, engaging, lacks integrated demo   | Polished, engaging, includes an effective demo presentation |
-| **GitHub Structure**     | Not implemented           | Unstructured, lacks organization    | Basic structure, poorly organized      | Organized, minor structural flaws        | Well-structured, minor issues, lacks demo presentation | Fully organized, clean, includes well-documented demo presentation |
-| **Project Quality**      | Not functional            | Barely functional, major flaws       | Basic functionality, many issues       | Functional with minor issues             | High quality, minor polish required      | Exceptional quality, thoroughly polished |
-| **Deployment**           | Not deployed              | Barely functional, not usable        | Basic local deployment, lacks clarity  | Functional local deployment              | Public deployment with minor issues | Fully functional public deployment |
+### 📁 **File Structure**
 
-Good luck with your capstone project! 🎉
+```
+├── images/                        # Color palette images
+│   ├── Bear-ColorPlatte.png
+│   ├── butterfly-ColorPlatte.png
+│   ├── Dolphin-ColorPlatte.png
+│   ├── fox-ColorPlatte.png
+│   ├── MARIO-ColorPlatte.png
+│   ├── Sonic-ColorPlatte.png
+│   ├── spiderMan-ColorPlatte.png
+│   └── watermelon-ColorPlatte.png
+├── venv/                          # Virtual environment folder
+├── appGrid+ColorPlatte.py         # Streamlit app for managing grid and colors
+├── images.py                      # Utility functions for handling images
+├── images+ColorPlatte.py          # Extended functionality for grids and palettes
+├── Logo.png                       # Project logo
+├── README.md                      # Project documentation
+├── READMEProject.md               # Additional documentation
+└── requirements.txt               # Python package dependencies
+```
+
+---
+
+### 🎯 **Core Functionalities**
+1. **Voice Recognition**:
+   - Process Arabic voice commands using Google Speech Recognition to identify grid zones and colors.
+
+2. **Grid Coloring**:
+   - Dynamically generate and color grids using Pillow.
+
+3. **Interactive UI**:
+   - Streamlit-based interface allows seamless image selection and grid updates.
+
+4. **Color Mapping**:
+   - Map Arabic color names to RGB values and apply them to grid zones.
+
+5. **RTL and Arabic Language Support**:
+   - Ensure proper text alignment and functionality for Arabic-speaking users.
+
+---
+
+### ⚙️ **Setup and Usage**
+
+#### 🚰 **Prerequisites**
+- **Python 3.8+**
+- **Virtual Environment** (recommended)
+- Required Libraries: `streamlit`, `numpy`, `Pillow`, `speechrecognition`
+
+#### 💻 **Installation**
+
+   1. Clone the repository:
+      ```bash
+      git clone https://github.com/AI-bootcamp/capstone-project-team-3-2.git
+      cd capstone-project-team-3-2
+      ```
+
+Your repository is now cloned locally, and you're inside the project folder. Let me know if you need further assistance with setting up the repository or working on the project!
+
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run the application:
+   ```bash
+   streamlit run appGrid+ColorPlatte.py
+   ```
+
+---
+
+### 🧑‍💻 **Usage**
+
+1. Launch the Streamlit application.
+2. Select a grid image from the dropdown menu.
+3. Press the **Record** button and speak your command in Arabic (e.g., "أربعة لون أخضر").
+4. The grid will dynamically update with the specified color and zone.
+
+---
+
+### 📊 **Example Commands**
+- **Command**: "رقم ثلاثة لون أحمر"
+  - *Effect*: Colors zone 3 in red.
+- **Command**: "رقم واحد لون أزرق"
+  - *Effect*: Colors zone 1 in blue.
+
+---
+
+### 🚀 **Future Enhancements**
+- 🔬 **AI-Powered Color Suggestions**: Integrate NLP models to suggest colors based on user context.
+- 🌍 **Multi-Language Support**: Expand functionality to accommodate additional languages.
+- 🎨 **Custom Grid Uploads**: Allow users to upload and color their own images.
+- 📊 **Usage Insights**: Provide analytics for frequently used commands and colors.
+
+---
+
+### 🤝 **Contributing**
+Contributions are welcome! Submit pull requests or report issues to enhance the project.
+
