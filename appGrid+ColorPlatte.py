@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 import speech_recognition as sr
 from images import pixel_images
 
@@ -59,10 +59,13 @@ def image_grid_generator(numbers_matrix, colors_dict, grayscale_colors_dict, cel
             text_width, text_height = bbox[2] - bbox[0], bbox[3] - bbox[1]
             text_x = x0 + (cell_size - text_width) // 2
             text_y = y0 + (cell_size - text_height) // 2
-            draw.text((text_x, text_y), text, fill="black")
+            draw.text((text_x, text_y), text, fill="black",font=ImageFont.truetype("arial.ttf", 28))
 
     return img
-
+st.set_page_config(
+    page_title="ملاذّ|Malath",  
+    page_icon="🎨", 
+)
 
 # Apply RTL styling for the entire page and selectbox
 st.markdown(
@@ -104,19 +107,16 @@ arabic_number_map = {
 def main():
     st.image("images\Malath logo.png", width=670)  # Add the logo image (left column)
     st.markdown("""
-        <div dir="rtl">
-        <h3 style="color: #2C3E6E;"> بصوتك، لوّن عالمك 🎨</h3>  <!-- Dark blue color with an emoji -->
-            
         ##### عن ملاذ
         "ملاذ" هو منصة تفاعلية حيث يمكنك إحياء أفكارك الإبداعية عن طريق تلوين مناطق مختلفة في شبكة باستخدام أوامر صوتية.
          مع نهجنا، يمكنك التحدث  لاختيار المنطقة واللون، ومتابعة تحديث رسمتك فورًا!
 
-        ##### كيفية استخدام الموقع:
+        ##### 👩‍🎨كيفية استخدام الموقع:
         1. اختر صورة لتوينها من القائمة المنسدلة.
         2. اضغط على زر "تسجيل" لبدء الأمر الصوتي.
         3. تحدث بوضوح عن رقم المنطقة واللون الذي تريد استخدامه (بالعربية).
         4. شاهد تحديث رسمتك بالألوان الجديدة في الوقت الفعلي!
-
+        _______________________________________________________________________________
         
          </div>
         """, unsafe_allow_html=True)
@@ -124,7 +124,7 @@ def main():
 
 
 
-    selected_image = st.selectbox("اختر صورة:", pixel_images.keys())
+    selected_image = st.selectbox("اختر صورة التي تريد تلوينها يا بطل 👏:", pixel_images.keys())
 ##
     # Generate initial grid
     if (
@@ -156,7 +156,7 @@ def main():
                 st.session_state.color_map,
                 st.session_state.grayscale_colors_dict,
             ),
-            caption="📷 تم تحديث الشبكة",
+            caption="الرسمة المختاره🔥",
             use_container_width=True,
         )
 
@@ -168,20 +168,31 @@ def main():
            
             use_container_width=True,
         )
-
-    st.header("🎤 تسجيل الأوامر الصوتية")
+    st.markdown("""
+         <h3 style="
+        font-size: 36px; 
+        font-weight: bold; 
+        background: linear-gradient(90deg, red, orange, green, blue, indigo, violet); 
+        -webkit-background-clip: text; 
+        -webkit-text-fill-color: transparent; 
+        display: inline-block;
+        margin: 0;"> بصوتك، لوّن عالمك 🎨</h3>  <!-- Dark blue color with an emoji -->
+            
+        
+         </div>
+        """, unsafe_allow_html=True)
 
     command = ""
     listened = False
     if st.button("اضغط للتسجيل"):
         recognizer = sr.Recognizer()
         with sr.Microphone() as source:
-            st.write("🎤 الاستماع...")
+            st.write("🎤 نستمع اليك قُل رقم المنطقة واللون ...")
             listened = True
             try:
                 audio = recognizer.listen(source, timeout=10)
                 command = recognizer.recognize_google(audio, language="ar")
-                st.success(f"✅ تم تسجيل الأمر: {command}")
+                st.success(f"✅👌 تم تسجيل ابداعك: {command}")
             except Exception as e:
                 st.error(f"❌ لم يتم التعرف على الصوت: {str(e)}")
         Detect=st.empty()
