@@ -125,9 +125,9 @@ def main():
 
 
     selected_image = st.selectbox("اختر صورة التي تريد تلوينها يا بطل 👏:", pixel_images.keys())
-##
+####
     # Generate initial grid
-    if (
+    if ( 
         "selected_image" not in st.session_state
         or st.session_state.selected_image != selected_image
     ):
